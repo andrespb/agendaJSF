@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template/Template.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content" style="margin: 0 auto; padding-bottom: 10px" class="container">
+                        <div class="col-sm-12 form-group">
+                            <p:messages autoUpdate="true" for="form1" globalOnly="true" showDetail="true" id="mensaje" closable="true" showSummary="true"></p:messages>
+                        </div>
+                        <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+                                  closable="false" resizable="false" showHeader="false"
+                                  styleClass="dialogospinner">
+                            <img src="/turismo-web/resources/img/spinner.gif"
+                                 class="imagenSpinner"></img>
+                        </p:dialog>
+
+                        <fieldset class="panel">
+                            <legend>Reportes</legend>
+                            <h:form prependId="true" id="form1" styleClass="form-horizontal" target="_blank">
+                                <p:outputPanel id="reportes">
+                                    <div class="col-sm-10 col-sm-offset-2">
+                                        <div class="col-sm-3">
+                                            <h:outputLabel value="Persona" style="margin-right: 50px"/>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h:commandButton  title="Reporter PDF" image="../resources/img/pdf.png"  styleClass="btn-liquidacionP" 
+                                                              action="#{reportesBean.mostrarReportesSencillos(1 , 1)}" type="submit">
+                                            </h:commandButton>
+
+                                            <h:commandButton  title="Reporter Word" image="../resources/img/word.png"  styleClass="btn-liquidacionP" 
+                                                              action="#{reportesBean.mostrarReportesSencillos(2 , 1)}" type="submit">
+                                            </h:commandButton>
+
+                                            <h:commandButton  title="Reporter Excel" image="../resources/img/excel.png"  styleClass="btn-liquidacionP" 
+                                                              action="#{reportesBean.mostrarReportesSencillos(3 , 1)}" type="submit">
+                                            </h:commandButton>
+
+                                            <h:commandButton  title="Reporter Powert Point" image="../resources/img/point.png"  styleClass="btn-liquidacionP" 
+                                                              action="#{reportesBean.mostrarReportesSencillos(4 , 1)}" type="submit">
+                                            </h:commandButton>      
+                                        </div>
+                                    </div>
+                                </p:outputPanel>
+                            </h:form>
+                        </fieldset>
+                    </div>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

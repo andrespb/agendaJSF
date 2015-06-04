@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./../template/Template.xhtml">
+            <ui:define name="top">
+            </ui:define>
+            
+            <ui:define name="content">
+                <div id="content" style="margin: 0 auto; padding-bottom: 10px" class="container">
+                    <fieldset class="panel">
+                    <legend>Registrar Usuario</legend>
+                        <div class="center-block col-sm-12 form-group">
+                            <h:form id="formRegistrarUser" styleClass="form-horizontal">
+                            <p:growl sticky="false" id="mensajeGeneral" showDetail="true" life="6000" />
+                            <h:panelGrid  columns="3" cellpadding="10" cellspacing="5">
+                                <p:outputLabel for="txtNombre" value="Nombre: " />
+                                <p:inputText id="txtNombre" label="Nombre" size="30" value="#{usuarioView.getUsuario().nombre}">
+                                    <f:validator validatorId="validadorVacio" />
+                                </p:inputText>
+                                <p:message for="txtNombre"/>
+
+                                <p:outputLabel for="txtPrimerApellido" value="Primer Apellido: " />
+                                <p:inputText id="txtPrimerApellido" label="Primer Apellido" size="30" value="#{usuarioView.getUsuario().apellido1}">
+                                    <f:validator validatorId="validadorVacio" />
+                                </p:inputText>
+                                <p:message for="txtPrimerApellido"/>
+
+                                <h:outputLabel value="Segundo Apellido: " />
+                                <p:inputText id="txtSegundoApellido" size="30" value="#{usuarioView.getUsuario().apellido2}" />
+                                <h:panelGroup/>
+
+                                <p:outputLabel for="txtEmail" value="Email: " />
+                                <p:inputText id="txtEmail" label="Email"  title="Ejemplo: user_name@example.com" size="30" value="#{usuarioView.getUsuario().correoElectronico}">
+                                    <f:validator validatorId="validatorEmail"/>
+                                    <f:validator validatorId="validadorVacio" />
+                                </p:inputText>
+                                <h:panelGroup>
+                                    <p:tooltip for="txtEmail" showEvent="focus" hideEvent="blur"/>
+                                    <p:message for="txtEmail"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel for="txtPassword" value="Contraseña: " />
+                                <p:password id="txtPassword" label="Contraseña" size="30" value="#{usuarioView.getUsuario().contrasenia}">
+                                    <f:validator validatorId="validadorVacio" />
+                                </p:password>
+                                <p:message for="txtPassword"/>
+
+                                <p:outputLabel for="txtPasswordRepita" value="Repita Contraseña: " />
+                                <p:password id="txtPasswordRepita" size="30" value="#{usuarioView.passwordRepita}" >
+                                    <f:validator validatorId="validadorVacio" />
+                                </p:password>
+                                <p:message for="txtPasswordRepita"/>
+
+                                <p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento: " />
+                                <p:calendar id="txtFechaNacimiento" size="25" label="Fecha de nacimiento" showOn="button" title="Ejemplo: dd/MM/YYYY" value="#{usuarioView.getUsuario().fechaNacimiento}" pattern="dd/MM/yyyy" required="true" requiredMessage="Fecha de nacimiento es requerido"/>
+                                <p:message for="txtFechaNacimiento"/>
+
+                                <h:outputLabel value="Genero: " for="radioGenero"/>
+                                <p:selectOneRadio id="radioGenero" value="#{usuarioView.getUsuario().sexo}">
+                                    <f:selectItem itemLabel="Masculino" itemValue="true" />
+                                    <f:selectItem itemLabel="Femenino" itemValue="false" />
+                                </p:selectOneRadio>
+                                <h:panelGroup />
+
+                                <h:outputLabel value="Telefono: " />
+                                <p:inputText id="txtTelefono" size="30" value="#{usuarioView.getUsuario().telefono}"/>
+
+                                <h:panelGroup></h:panelGroup>
+                                <h:panelGroup></h:panelGroup>
+                                <p:commandButton value="Registrar Usuario" ajax="false" actionListener="#{usuarioView.registrar()}" update="formRegistrarUser" />
+                            </h:panelGrid>
+                        </h:form>
+                        </div>
+                    </fieldset>
+                </div>
+            </ui:define>
+
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
